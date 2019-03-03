@@ -1,0 +1,35 @@
+<html>
+<head>
+<style>
+.grid-container {
+  display: grid;
+  grid-gap: 100px;
+  grid-template-columns: auto auto auto;
+  background-color: #ffffff;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 0, 0, 0);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: centre;
+}
+</style>
+</head>
+<body>
+<h2>CLEANER DETAILS SORTED BY DATE</H2>
+<div class="grid-container">
+  <div class="grid-item" align="center">03/03/2019<iframe width="200" height="120" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=C7B6B58BBB1B425%21113&authkey=%21AATv1rHPi1HDpVk&em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True">
+</iframe><br></div>
+  <div class="grid-item" align="center">04/03/2019<iframe width="200" height="120" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=C7B6B58BBB1B425%21115&authkey=%21AA40dq9niDGqzK8&em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True">
+</iframe><br></div>
+  <div class="grid-item" align="center">05/03/2019<iframe width="200" height="120" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=C7B6B58BBB1B425%21117&authkey=%21AN6zdjN0beuBAJ8&em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True">
+</iframe><br></div>  
+  <div class="grid-item" align="center">06/03/2019<iframe width="200" height="120" frameborder="0" scrolling="no" src="https://onedrive.live.com/embed?resid=C7B6B58BBB1B425%21119&authkey=%21AGauOG4ZmW2j8lQ&em=2&wdAllowInteractivity=False&wdHideGridlines=True&wdHideHeaders=True&wdDownloadButton=True&wdInConfigurator=True">
+</iframe><br></div>
+
+</div>
+</body>
+</html>

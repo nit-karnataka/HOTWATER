@@ -1,0 +1,83 @@
+#include <ESP8266WiFi.h>
+const char* ssid = "NITK-NET";
+const char* password = "2K16NITK";
+ 
+//Constants
+const int bP =16; //d0      
+ 
+//Variables
+int buttonState = 0;
+int count =0;
+ 
+WiFiServer server(80);
+void setup() {
+  Serial.begin(115200);
+  delay(10);  //Input or output?      
+  pinMode(bP,INPUT);
+
+  // Connect to WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi connected");
+  // Start the server
+  server.begin();
+  Serial.println("Server started");
+  // Print the IP address
+  Serial.print("Use this URL to connect: ");
+  Serial.print("http://");
+  Serial.print(WiFi.localIP());
+  Serial.println("/");
+}
+void loop() {
+  // Check if a client has connected
+  WiFiClient client = server.available();
+  if (!client) {
+    return;
+  }
+  // Wait until the client sends some data
+  Serial.println("new client");                                                
+   while(!client.available()){
+    delay(1);
+  }
+// Set ledPin according to the request
+//digitalWrite(ledPin, value);
+  // Return the response
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-Type: text/html");
+  client.println(""); //  do not forget this one
+  client.println("<!DOCTYPE HTML>");
+  client.println("<html>");
+  client.println("<br><br>");
+   client.println  ("<FONT FACE= times new roman COLOR=PURPLE> <h1>  <i> PD Hinduja Washroom Management System </i> </h1> </font> ");
+ 
+
+ 
+delay(1000);
+buttonState = digitalRead(bP);
+Serial.println(buttonState);
+  //If button pressed...
+  if (buttonState == HIGH) 
+    { delay(100);
+       count=count+1; 
+       Serial.println(count);       
+       if (count > 0)
+     client.println(" <h2> <font face=times new roman color= BLUE size=10pt >Washroom requires cleaning <br> </font> </h2> ");
+     //client.println("");
+  
+{
+ESP.restart();
+  }
+  
+  delay(1);
+  client.println("</html>");
+ // Serial.println("Client disonnected");
+  }
+}

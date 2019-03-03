@@ -1,0 +1,128 @@
+#include <ESP8266WiFi.h>
+const char* ssid = "NITK-NET";
+const char* password = "2K16NITK";
+WiFiServer server(80);
+ 
+//BUTTON AND LED DECL...
+const int buttonPin =16;      //d0     
+const int ledPin =  5;       //d1     
+const int buttonPin1 =4;    //d2     
+const int ledPin1 =0;      //d3     
+ 
+  //Variables Declaration 
+
+int buttonState = 0;
+int buttonState1 = 0;
+int a=0;
+ 
+void setup() {
+  Serial.begin(115200);
+  delay(10);   
+   //Input or output declaration
+  
+  pinMode(ledPin, OUTPUT);      
+  pinMode(buttonPin, INPUT);
+  pinMode(ledPin1, OUTPUT);      
+  pinMode(buttonPin1, INPUT);
+
+  // Connect to WiFi network
+  Serial.println();
+  Serial.println();
+  Serial.print("Connecting to ");
+  Serial.println(ssid);
+
+  WiFi.begin(ssid, password);
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("");
+  Serial.println("WiFi connected");
+
+  // Start the server
+ 
+  server.begin();
+  Serial.println("Server started");
+
+  // Printing the IP address
+ 
+  Serial.print("Use this URL to connect: ");
+  Serial.print("http://");
+  Serial.print(WiFi.localIP());
+  Serial.println("/");
+
+}
+
+void loop() {
+  // Check if a client has connected
+ 
+  WiFiClient client = server.available();
+  if (!client) 
+    {
+    return;
+    }
+
+  // Wait until the client sends some data
+ 
+   Serial.println("new client");                                                
+   while(!client.available()){
+    delay(1);
+  }
+// Set ledPin according to the request
+
+  // Return the response
+ 
+  client.println("HTTP/1.1 200 OK");
+  client.println("Content-Type: text/html");
+  client.println(""); //  do not forget this one
+  client.println("<!DOCTYPE HTML>");
+  client.println("<html>");
+  client.println("<br><br>");
+  client.println  ("<FONT FACE= times new roman COLOR=PURPLE> <h1>  <i> PD Hinduja Washroom Management System </i> </h1> </font> ");
+
+
+buttonState = digitalRead(buttonPin);
+//Serial.println(buttonState);
+  //If button pressed...
+  
+    if (buttonState == HIGH) 
+    { 
+      //...ones, turn led on!
+     digitalWrite(ledPin, HIGH);
+     client.println ("<font face= times new roman color=RED size=25pt><strong> ALERT !!! </strong> </font> <br>");
+     client.println(" <h2> <font face=times new roman color= BLUE size=10pt >  DIRTY (OR) UNPLEASANT ODOUR <br></font> </h2>");
+     client.println("<Strong><font face= times new roman color=GREEN size=20pt> <Strong><font face= times new roman color=GREEN size=20pt> CLEANING required in  Room No.: 10 Floor No.: 4  Cleaner Mobile No. 98765432XX     </font></strong> <br>  </font></strong> <br> ");
+     a=1;
+      }
+     else
+    {
+      digitalWrite(ledPin, LOW);
+    
+     }  
+  buttonState1 = digitalRead(buttonPin1);
+  //Serial.println(buttonState1);
+  //If button pressed...
+  if (buttonState1 == HIGH) { 
+    //...ones, turn led on!
+      digitalWrite(ledPin1, HIGH);
+ client.println ("<font face= times new roman color=RED size=25pt><strong> ALERT !!! </strong> </font><br>");
+ client.println(" <h2> <font face=times new roman color= BLUE size=10pt >  LACK OF WATER (or) UTILITIES / LEAKAGE    <br></font> </h2>");
+client.println ( "<Strong><font face= times new roman color=GREEN size=20pt>OTHER SERVICES Required at  Wash room No.: 5 Floor No.: 2 Floor Supervisor no:90182234XX </strong> <br></font> ");
+ 
+  a=2;
+   }
+    //...twice, turn led off!
+    else 
+{
+      digitalWrite(ledPin1, LOW);
+    } 
+      Serial.println("Client disonnected");  
+  delay(2700000);// delaying for 45 min
+if(a!=1 || a!=2) {
+  client.println("<h2> <font face=times new roman color= BLUE size=10pt > Washroom Needs a clean last cleaned : 45min ago <br></font> </h2>"); 
+}
+  delay(1);
+  client.println("</html>");
+
+
+} 

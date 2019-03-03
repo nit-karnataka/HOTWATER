@@ -1,0 +1,67 @@
+CHART GENERATION
+Private Sub CommandButton1_Click()
+
+Range("A1:A7,Z1:Z7").Select
+ActiveSheet.Shapes.AddChart.Select
+ActiveChart.SetSourceData Source:=Range("'Sheet1'!$A$1:$A$7,'Sheet1'!$Z$1:$Z$7")
+ActiveChart.ChartType = xlColumnClustered
+ActiveSheet.ChartObjects(1).Activate
+ActiveSheet.ChartObjects(1).Cut
+Sheets("Sheet1").Select
+ActiveSheet.Paste
+Sheets("Sheet1").Select
+Range("F9").Activate
+
+End Sub
+
+TOTAL DURATION
+
+Private Sub CommandButton2_Click()
+Range("Z3:Z7").Formula = "=((D3-C3)+(F3-E3)+(H3-G3)+(J3-I3)+(L3-K3)+(N3-M3)+(P3-O3)+(R3-Q3)+(T3-S3)+(V3-U3)+(X3-W3))"
+
+End Sub
+
+
+FULL TIME CODE
+
+Private Sub Worksheet_Change(ByVal Target As Range)
+' hiker95, 12/17/2012
+' http://www.mrexcel.com/forum/excel-questions/672492-scan-barcode-excel-date-time-stamp-out.html
+If Intersect(Target, Range("A2:A3000")) Is Nothing Then Exit Sub
+If Target.Count > 1 Then Exit Sub
+If Target = "" Then Exit Sub
+Dim lc As Long, fr As Long, n As Long
+With Application
+  .EnableEvents = False
+  .ScreenUpdating = False
+  n = Application.CountIf(Columns(1), Cells(Target.Row, 1))
+  If n = 1 Then
+    lc = Cells(Target.Row, Columns.Count).End(xlToLeft).Column
+    If lc = 1 Then
+      Cells(Target.Row, lc + 2) = Format(Time, "hh:mm")
+    ElseIf lc > 2 Then
+      Cells(Target.Row, lc + 1) = Format(Time, "hh:mm")
+    End If
+  Else
+    fr = 0
+    On Error Resume Next
+    fr = Application.Match(Cells(Target.Row, 1), Columns(1), 0)
+    On Error GoTo 0
+    If fr > 0 Then
+      lc = Cells(fr, Columns.Count).End(xlToLeft).Column
+      If lc = 1 Then
+        Cells(fr, lc + 2) = Format(Time, "hh:mm")
+      ElseIf lc > 2 Then
+        Cells(fr, lc + 1) = Format(Time, "hh:mm")
+      End If
+      Target.Clear
+    End If
+  End If
+  .EnableEvents = True
+  .ScreenUpdating = True
+End With
+End Sub
+
+Private Sub Worksheet_SelectionChange(ByVal Target As Range)
+
+End Sub

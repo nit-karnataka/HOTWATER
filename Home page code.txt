@@ -1,0 +1,86 @@
+<html>
+<head>
+<title> PD Hinduja Hospital </title>
+<style>
+body{
+	
+	margin: 0px;
+	border: 0px;
+
+}
+#header{
+	width: 100%;
+	height: 120px;
+	background: #dd8623;
+	color: black;
+}
+#sidebar{
+	width: 300px;
+	height: 400px;
+	background: #27ae60;
+	float: left;
+	}
+	#Data{
+		height: 700px;
+	background: #ffffff;
+	color: black;
+	font-family: TimesNewRoman;
+	font-size: 20px;
+	}
+	#adminLogo{
+		background: white;
+		border-radius: 50px;
+	}
+	ul li{
+		padding: 20px;
+border-bottom: 2px solid grey;
+		
+}
+	
+	ul li:hover{
+		background: green;
+		color: white;
+	}
+	ul li ul li {
+	display:none;}
+	ul li:hover ul li{
+	display:block;}
+</style>
+</head>
+<body>
+<div id="header">
+
+<center><img src="varun.png" alt="adminLogo" id="adminLogo"><br> Dashboard to monitor the work progress of Wash Room
+</center>
+</div>
+
+<div id="sidebar">
+<ul>
+
+<a href="C:/SIH/TEA/description.php" target="_blank" style="color: black;">
+<li> Track Floor
+<ul>
+<li><a>Floor 1</a></li>
+<li><a>Floor 2</a></li>
+<li><a>Floor 3</a></li>
+<li><a>Floor 4</a></li>
+<li><a>Floor 5</a></li>
+</ul>
+ </li>
+
+<li><a href="file:///F:\SIH\SIH.xlsx">Cleaner check</a></li>
+
+<li> Alert</li>
+
+
+
+</ul>
+
+</div>
+
+<div id="Data"><br>
+<center><h3><b>PD HINDUJA HOSPITAL</b></h3>
+<p>Home Page of Smart washroom management System</center>
+</div>
+</body>
+</html>

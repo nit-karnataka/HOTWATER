@@ -1,0 +1,57 @@
+<html>
+<head>
+<style>
+#header{
+	width: 100%;
+	height: 60px;
+	background :#27ae60;
+}
+#Data{
+	height: 300px;
+	background: #ffffff;
+	color: black;
+	font-family: TimesNewRoman;
+	font-size: 20px;
+}
+a:link, a:visited{
+	background-color: #f44336;
+	color: white;
+	padding: 14px 25px;
+	text-align: center;
+	display: inline-block;
+	position: relative;
+	left: 90%
+}
+a:hover, a:active{
+	background-color: red;
+}
+</style>
+</head>
+<body>
+<div id="header">
+ <h1><center><b>FLOOR 1</b></center></h1>
+ </div>
+ 
+ <div id="Data">
+ <center>
+  
+<p contenteditable="true"><font color="#9933ff"><b> I Cabin Number 01 </b></font></p>
+
+<p contenteditable="true"><b>No of times checked:</b> 3 times</p>
+<p contenteditable="true"><b>Checked by:</b> SATHISH</p>
+<p contenteditable="true"><b>Current Status:</b> <font color="#00ff00"><b>CLEAN</b></font></p>
+<p contenteditable="true"><b>Floor Cleaner Number:</b> 7448965XXX</p>
+</center>
+<center>
+  
+<p contenteditable="true"><font color="#0000ff"><b> II Cabin Number 02 </font></b></p>
+
+<p contenteditable="true"><b>No of times checked:</b> 10 times</p>
+<p contenteditable="true"><b>Checked by:</b> LATHA</p>
+<p contenteditable="true"><b>Current Status:</b> <font color="#ff0000"><b>NOT CLEAN</b></font></p>
+<p contenteditable="true"><b>Floor Cleaner Number:</b> 9443444XXX</p>
+</center>
+<a href="C:/web/Home%20page%20code.html">Back</a>
+</body>
+</html>
+ 
